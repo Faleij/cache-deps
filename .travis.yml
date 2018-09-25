@@ -1,7 +1,7 @@
 # these are executed in order.  each must pass for the next to be run
 stages:
   - lint
-  # - test
+  - test
   - deploy
 
   # defaults

@@ -10,16 +10,12 @@ import ttyTable, {
 import Queue from './Queue';
 import * as readline from 'readline';
 import { parseArgv } from './argv';
+import { getNpmPath } from './npmPath';
 
 const noop = function () {};
 
-const isWin32 = process.platform === 'win32';
-const npmGlobalRoot = execSync('npm root -g').toString().trim();
-const npmExec = execSync(`${isWin32 ? 'where' : 'which'} npm`).toString().split('\n')[0];
-if (!npmExec || !(/[\\\/]/).test(npmExec)) throw new Error('unable to locate npm');
-const npmModulesPath = path.join(npmExec, '../node_modules/');
-const npmPaths = [npmModulesPath, npmGlobalRoot];
-const npm = require(require.resolve('npm/lib/npm', { paths: npmPaths }));
+const globalNpmPath = getNpmPath();
+const npm = require(`${globalNpmPath}/lib/npm`);
 
 const lockfileStr = process.argv.slice(-1).pop().startsWith('-') ? false : process.argv.pop();
 const argvArr = process.argv.slice(2);
@@ -58,7 +54,7 @@ Example:
 const isCached = new Set();
 npm.load({ loaded: false }, (err) => {
   if (err) throw err;
-  const npmCache = require(require.resolve('npm/lib/cache', { paths: npmPaths }));
+  const npmCache = require(`${globalNpmPath}/lib/cache`);
 
   const npmConfigProduction = renameFunction('npm.config.production',
                                              () => npm.config.get('production'));
