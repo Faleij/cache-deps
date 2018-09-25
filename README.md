@@ -11,7 +11,7 @@ Globally cache dependencies from a package-lock.json or a bower.json for faster 
 
 
 ## Why?
-I wanted NPM and Bower dependencies cached in a base docker image for faster builds of child images but there were no built in commands for populating the cache of either NPM or Bower, this is the tool to fill that gap.
+I wanted NPM and Bower dependencies cached in a base docker image for faster builds of child images but there were no built in commands for populating the cache of either NPM or Bower, this is the tool to provide that functionality.
 
 
 ## Install
