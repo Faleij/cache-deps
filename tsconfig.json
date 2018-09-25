@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es2017",
+        "noImplicitAny": false,
+        "preserveConstEnums": true,
+        "inlineSourceMap": true,
+        "declaration": true,
+        "declarationDir": "dist",
+        "moduleResolution": "node",
+        "types": [
+            "mocha",
+            "node"
+        ],
+        "outDir": "dist"
+    },
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

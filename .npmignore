@@ -1,0 +1,6 @@
+src
+example-files
+.*
+
+/ts*.json
+*.git_ignore.*

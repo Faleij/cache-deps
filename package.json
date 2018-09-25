@@ -1,0 +1,31 @@
+{
+  "name": "cache-deps",
+  "description": "Globally cache depedencies from package-lock.json or bower.json for faster installs.",
+  "version": "0.0.0",
+  "types": "./dist/*.d.ts",
+  "bin": {
+    "npm-cache-add": "./bin/npm-cache-add.js",
+    "bower-cache-add": "./bin/bower-cache-add.js"
+  },
+  "scripts": {
+    "test": "mocha dist/*.spec",
+    "build": "rm -rf dist && tsc",
+    "lint": "tslint --project ."
+  },
+  "keywords": [],
+  "author": "Faleij <faleij@gmail.com> (https://github.com/faleij)",
+  "license": "MIT",
+  "dependencies": {
+    "word-wrap": "^1.2.3"
+  },
+  "devDependencies": {
+    "@types/expect.js": "^0.3.29",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.10.1",
+    "mocha": "^5.2.0",
+    "ts-loader": "^5.1.1",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.11.0",
+    "typescript": "^3.0.3"
+  }
+}
