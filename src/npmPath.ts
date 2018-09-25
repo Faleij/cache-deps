@@ -2,7 +2,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-export function getNpmPath() {
+export function getNpmPath() : string {
   // it is assumed that npm is always installed alongside with node
   let npm;
   let npmBinPath;
@@ -14,7 +14,7 @@ export function getNpmPath() {
     // maybe the NODE_PATH var is already set correctly
     npm = require('npm');
     if (!npm) throw new Error('npm not found');
-    return npm;
+    return 'npm';
   } catch (e) {
     if (fs.statSync(npmBin)) {
       if (fs.lstatSync(npmBin).isSymbolicLink()) {

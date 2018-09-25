@@ -1,1 +1,1 @@
-export declare function getNpmPath(): any;
+export declare function getNpmPath(): string;

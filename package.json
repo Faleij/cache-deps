@@ -1,7 +1,7 @@
 {
   "name": "cache-deps",
   "description": "Globally cache depedencies from package-lock.json or bower.json for faster installs.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "types": "./dist/*.d.ts",
   "bin": {
     "npm-cache-add": "./bin/npm-cache-add.js",
