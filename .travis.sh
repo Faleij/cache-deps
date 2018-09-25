@@ -30,7 +30,9 @@ build() {
 }
 
 test() {
-	npm run test
+	npm link
+  bower-cache-add example-files/bower.json
+  npm-cache-add package-lock.json
 }
 
 lint() {
