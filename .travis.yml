@@ -1,7 +1,7 @@
 # these are executed in order.  each must pass for the next to be run
 stages:
   - lint
-  - test
+  # - test
   - deploy
 
   # defaults
@@ -16,14 +16,15 @@ jobs:
       script: bash .travis.sh install lint
       node_js: '10'
 
-    - &node
-      stage: test
-      script: bash .travis.sh install build test
-      node_js: '8'
+    # No tests as of now
+    #- &node
+    #  stage: test
+    #  script: bash .travis.sh install build
+    #  node_js: '8'
 
       # includes testing, thats why v10 is not in test stage
     - stage: deploy
-      script: bash .travis.sh install build test deploy
+      script: bash .travis.sh install build deploy
       node_js: '10'
 
   env:
