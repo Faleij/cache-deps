@@ -15,16 +15,22 @@ jobs:
     - stage: lint
       script: bash .travis.sh install lint
       node_js: '10'
+      if: tag IS blank
 
     - &node
       stage: test
       script: bash .travis.sh install build test
+      node_js: '10'
+      if: tag IS blank
+
+    - <<: *node
       node_js: '8'
 
-      # includes testing, thats why v10 is not in test stage
     - stage: deploy
       script: bash .travis.sh install build test deploy
       node_js: '10'
+      # only deploy when tagged on master
+      if: branch = master AND tag IS present
 
 env:
   global:

@@ -52,10 +52,8 @@ deploy() {
 	# dry publish run
 	npm pack
 
-	# publish only when tagged and not a pull request
-	if [[ "${TRAVIS_TAG}" != "" ]] && [[ "${TRAVIS_PULL_REQUEST}" = "false" ]]; then
-		npm publish $(ls *-*.*.*.tgz)
-	fi
+	# actually publish
+	npm publish $(ls *-*.*.*.tgz)
 }
 
 # Loop over arguments
