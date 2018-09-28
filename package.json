@@ -1,7 +1,14 @@
 {
   "name": "cache-deps",
   "description": "Globally cache depedencies from package-lock.json or bower.json for faster installs.",
-  "version": "0.0.2",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Faleij/cache-deps.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Faleij/cache-deps/issues"
+  },
+  "version": "0.0.3",
   "types": "./dist/*.d.ts",
   "bin": {
     "npm-cache-add": "./bin/npm-cache-add.js",
@@ -16,6 +23,7 @@
   "author": "Faleij <faleij@gmail.com> (https://github.com/faleij)",
   "license": "MIT",
   "dependencies": {
+    "cli-width": "^2.2.0",
     "word-wrap": "^1.2.3"
   },
   "devDependencies": {

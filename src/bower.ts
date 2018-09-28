@@ -8,6 +8,7 @@ import ttyTable, {
 } from './ttyTable';
 import { parseArgv } from './argv';
 import * as readline from 'readline';
+import * as cliWidth from 'cli-width';
 
 const noop = function () { };
 
@@ -81,6 +82,7 @@ const shouldCachePackage = (name, usedVersion) => {
 
 let cached = 0;
 const processing = new Set();
+const ttyWidth = cliWidth({ defaultWidth: 80 });
 
 const clearProcessingLine = parsedOptions.noProgress ? noop : () => {
   readline.clearLine(process.stdout, 0);
@@ -94,10 +96,10 @@ const renderProcessing = parsedOptions.noProgress ? noop : () => {
       if (done) return p;
       const postfix = `... +${(arr.length - i).toString()}`;
       const a = ((i > 0) ? `, ${c}` : c);
-      if (process.stdout.columns < p.length + a.length + postfix.length) {
+      if (ttyWidth < p.length + a.length + postfix.length) {
         done = true;
         const parts = postfix.split(' ', 2);
-        return (p + parts[0]).padEnd(process.stdout.columns - parts[0].length, ' ') + parts[1];
+        return (p + parts[0]).padEnd(ttyWidth - parts[0].length, ' ') + parts[1];
       }
       return p + a;
     },

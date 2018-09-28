@@ -11,6 +11,7 @@ import Queue from './Queue';
 import * as readline from 'readline';
 import { parseArgv } from './argv';
 import { getNpmPath } from './npmPath';
+import * as cliWidth from 'cli-width';
 
 const noop = function () {};
 
@@ -100,6 +101,7 @@ npm.load({ loaded: false }, (err) => {
 
   let cached = 0;
   const processing = new Set();
+  const ttyWidth = cliWidth({ defaultWidth: 80 });
 
   const clearProcessingLine = parsedOptions.noProgress ? noop : () => {
     readline.clearLine(process.stdout, 0);
@@ -113,10 +115,10 @@ npm.load({ loaded: false }, (err) => {
           if (done) return p;
           const postfix = `... +${(arr.length - i).toString()}`;
           const a = ((i > 0) ? `, ${c}` : c);
-          if (process.stdout.columns < p.length + a.length + postfix.length) {
+          if (ttyWidth < p.length + a.length + postfix.length) {
             done = true;
             const parts = postfix.split(' ', 2);
-            return (p + parts[0]).padEnd(process.stdout.columns - parts[0].length, ' ') + parts[1];
+            return (p + parts[0]).padEnd(ttyWidth - parts[0].length, ' ') + parts[1];
           }
           return p + a;
         },
